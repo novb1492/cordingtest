@@ -26,13 +26,13 @@ public class App {
                     next++;
                     upTime++;
                 }else{
-                    System.out.println(sun+"/"+mother);
+                    //System.out.println(sun+"/"+mother);
                     if(upTime%2==0){
-                        System.out.println("a");
+                        //System.out.println("a");
                         mother--;
                         sun++;
                     }else{
-                        System.out.println("b");
+                        //System.out.println("b");
                         sun--;
                         mother++;
                     }
@@ -41,7 +41,7 @@ public class App {
                 totalTime++;
 
             }
-            System.out.println("fianl "+sun+"/"+mother);
+            System.out.println(sun+"/"+mother);
         }
         
     }
