@@ -19,8 +19,8 @@ public class Main {
             integers.add(Integer.parseInt(st2.nextToken()));
         }
         int result=0;
-        for(int i=0;i<integers.size();i++){
-            for(int ii=i+1;ii<integers.size();ii++){
+        for(int i=0;i<integers.size()-2;i++){
+            for(int ii=i+1;ii<integers.size()-1;ii++){
                 for(int iii=ii+1;iii<integers.size();iii++){
                    // System.out.println("i: "+integers.get(i)+"ii: "+integers.get(ii)+"iii: "+integers.get(iii));
                     int sum=integers.get(i)+integers.get(ii)+integers.get(iii);
