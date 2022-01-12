@@ -22,13 +22,18 @@ public class Main {
         }
         int c=0;
         for(int i:arr){
-          System.out.println("i: "+i);
          System.out.println("시작:"+i);
-         if(division(i/2,i)){
+         if(i==1||i==0){
             c++;
+        }
+         else if(division(i/2,i)){
+                c++;
+            
          }
         }
-        System.out.println(arr.size()-c-1);
+     
+
+        System.out.println(arr.size()-c);
     }
     public static boolean division(int half,int max) {
         System.out.println("half: "+half);
