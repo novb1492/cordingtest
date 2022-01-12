@@ -7,9 +7,12 @@ import java.util.StringTokenizer;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BigInteger a=new BigInteger(br.readLine());
-        BigInteger b=new BigInteger(br.readLine());
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); //선언
+        StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+        BigInteger a=new BigInteger(st.nextToken());
+        BigInteger b=new BigInteger(st.nextToken());
+        System.out.println(a.add(b));
 
     }
+
 }
