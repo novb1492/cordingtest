@@ -9,36 +9,12 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int cradCount=Integer.parseInt(st.nextToken());
-		int max=Integer.parseInt(st.nextToken());
-        List<Integer>integers=new ArrayList<>();
-        StringTokenizer st2 = new StringTokenizer(br.readLine(), " ");
-
-        while(st2.hasMoreTokens()){
-            integers.add(Integer.parseInt(st2.nextToken()));
+        int num=Integer.parseInt(br.readLine());
+        if(num<13){
+            System.out.println(0);
+            return;
         }
-        int result=0;
-        for(int i=0;i<integers.size()-2;i++){
-            for(int ii=i+1;ii<integers.size()-1;ii++){
-                for(int iii=ii+1;iii<integers.size();iii++){
-                   // System.out.println("i: "+integers.get(i)+"ii: "+integers.get(ii)+"iii: "+integers.get(iii));
-                    int sum=integers.get(i)+integers.get(ii)+integers.get(iii);
-                   // System.out.println("sum: "+sum);
-                    if(sum==max){
-                        System.out.println(sum);
-                        //System.out.println("final");
-                        return;
-                    }else if(sum<max){
-                        if(result<sum){
-                            result=sum;
-                        }
-                    }
-                }
-            }
-            
-        }
-        System.out.println(result);
+        
         
     }
 }
