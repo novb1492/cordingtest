@@ -10,12 +10,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
-        int start=Integer.parseInt((bf.readLine()));
-        int end=Integer.parseInt((bf.readLine()));
-        //StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
-        int t=0;
-        boolean first=true;
-        int min=0;
+        StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+        int start=Integer.parseInt(st.nextToken());
+        int end=Integer.parseInt((st.nextToken()));
+        String arr="";
         for(int ii=start;ii<=end;ii++){
             boolean flag=false;
             int half=ii/2;
@@ -32,11 +30,7 @@ public class Main {
                 }
                 if(!flag){
                     //System.out.println("소수발견: "+ii);
-                    if(first){
-                        min=ii;
-                        first=false;
-                    }
-                    t+=ii;
+                  arr+=Integer.toString(ii)+",";
                 }
             }
            
@@ -44,12 +38,10 @@ public class Main {
             //System.out.println("===============");
 
         }
-        if(first){
-            System.out.println(-1);
-        }else{
-            System.out.println(t);
-            System.out.println(min);
-        }
+   
+            System.out.println(arr.replace(",", "\n"));
+     
+        
     }
     public static boolean division(int half,int max) {
        // System.out.println("half: "+half);
