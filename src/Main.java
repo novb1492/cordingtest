@@ -1,14 +1,9 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.Arrays;
+
 import java.util.StringTokenizer;
-import java.util.Map.Entry;
 
 
 public class Main {
@@ -16,40 +11,25 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
         int total=Integer.parseInt(bf.readLine());
-        int[][] arr =new int[total][total];
+        int[][] arr =new int[total][2];
         for(int i=0;i<total;i++){
             StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
-            int x=Integer.parseInt(st.nextToken());
-            arr[i][0]=x;
+            arr[i][0]=Integer.parseInt(st.nextToken());
             arr[i][1]=Integer.parseInt(st.nextToken());
         }
-        int max=0;
-        Map<Integer,String>map=new HashMap<>();
-        for(int i=0;i<arr.length;i++){
-            int rank=0;
-            for(int ii=0;ii<arr.length;ii++){
-                if(i!=ii){
-                    int a=arr[i][0];
-                    int b=arr[ii][0];
-                    if(a>b){
-                        rank++;
-                    }else if(a==b){
-                        int c=arr[i][1];
-                        int d=arr[ii][1];
-                        if(c>d){
-                            rank++;
-                        }
-                    }
-                }
-            }
-            if(max<rank){
-                max=rank;
-            }   
-            map.put(rank, Integer.toString(arr[i][0])+","+Integer.toString(arr[i][1]));
-        }  
-        for(int i=0;i<max;i++){
-            System.out.println(map.get(i).replace(",", " "));
+        Arrays.sort(arr,(o1, o2) -> { 
+            if(o1[0] == o2[0]){ 
+                return Integer.compare(o1[1],o2[1]);
+             } else{ 
+                 return Integer.compare(o1[0],o2[0]); 
+             }
+        });
+        for(int[] a:arr){
+            System.out.println(a[0]+" "+a[1]);
         }
+
+       
+      
      
 
    
