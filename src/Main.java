@@ -24,7 +24,7 @@ public class Main {
             arr[i][1]=Integer.parseInt(st.nextToken());
         }
         int max=0;
-        Map<Integer,int[]>map=new HashMap<>();
+        Map<Integer,String>map=new HashMap<>();
         for(int i=0;i<arr.length;i++){
             int rank=0;
             for(int ii=0;ii<arr.length;ii++){
@@ -44,9 +44,12 @@ public class Main {
             }
             if(max<rank){
                 max=rank;
-            }
-            map.put(rank, arr[i]);
+            }   
+            map.put(rank, Integer.toString(arr[i][0])+","+Integer.toString(arr[i][1]));
         }  
+        for(int i=0;i<max;i++){
+            System.out.println(map.get(i).replace(",", " "));
+        }
      
 
    
