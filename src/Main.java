@@ -15,58 +15,40 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
-        //StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
         int total=Integer.parseInt(bf.readLine());
-        List<Integer>arr=new ArrayList<>();
-        Map<Integer,Integer>map=new HashMap<>();
+        int[][] arr =new int[total][total];
         for(int i=0;i<total;i++){
-            int num=Integer.parseInt(bf.readLine());
-            if(map.containsKey(num)){
-                map.put(num, map.get(num)+1);
-            }else{
-                map.put(num, 1);
+            StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+            int x=Integer.parseInt(st.nextToken());
+            arr[i][0]=x;
+            arr[i][1]=Integer.parseInt(st.nextToken());
+        }
+        int max=0;
+        Map<Integer,int[]>map=new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            int rank=0;
+            for(int ii=0;ii<arr.length;ii++){
+                if(i!=ii){
+                    int a=arr[i][0];
+                    int b=arr[ii][0];
+                    if(a>b){
+                        rank++;
+                    }else if(a==b){
+                        int c=arr[i][1];
+                        int d=arr[ii][1];
+                        if(c>d){
+                            rank++;
+                        }
+                    }
+                }
             }
-            arr.add(num);
-        }
-        int most=0; 
-        for(Integer i:map.keySet()){
-            int value=map.get(i);
-            if(value>=most){
-                most=value;
+            if(max<rank){
+                max=rank;
             }
-            System.out.println("key: "+i+"value: "+map.get(i));
-        }
-        System.out.println("most:"+most);
-        List<Integer>keys=new ArrayList<>();
-        for(Integer i:map.keySet()){
-            if(map.get(i)==most){
-                keys.add(i);
-            }
-        }
-        Collections.sort(keys);
-        int mostSee=0;
-        keys.forEach(i->System.out.println(i));
-        if(keys.size()>1){
-            mostSee=keys.get(1);
-        }else{  
-            mostSee=keys.get(0);
-        }
-        Collections.sort(arr);
-        int sum=0;
-        for(int i:arr){
-            sum+=i;
-        }
-        double divi=(double)sum/total;
-       
-
-       
+            map.put(rank, arr[i]);
+        }  
      
-        System.out.println("반올"+Math.round(divi));
-        System.out.println("중앙"+arr.get((total/2)));
-        System.out.println("최빈"+mostSee);
-        System.out.println("범위: "+(arr.get(total-1)-arr.get(0)));
-        
-        
+
    
     }
    
