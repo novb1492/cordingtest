@@ -17,42 +17,31 @@ public class Main {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
         //            StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
         int total=Integer.parseInt(bf.readLine());
-        List<String>arr=new ArrayList<>();
+        String[] arr = new String[total];
         for(int i=0;i<total;i++){
-            arr.add(bf.readLine());
+            arr[i]=bf.readLine();
         }
-        Map<Integer,String>map=new HashMap<>();
-        int max=0;
+ 
+        Arrays.sort(arr, new Comparator<String>() {		
+            @Override
+            public int compare(String s1, String s2) {
+               if(s1.length()<s2.length()){
+                   return -1;
+               }else{
+                   char a=s1.charAt(0);
+                   char b=s2.charAt(0);
+                   if((int)a>(int)b){
+                       return -1;
+                   }else{
+                       return 1;
+                   }
+               }
+            }
+        });
+        System.out.println("-------------------");
         for(String s:arr){
-            int rank=0;
-            System.out.println("s: "+s);
-            for(String ss:arr){
-                if(!s.equals(ss)){
-                    System.out.println("s: "+s+" ss: "+ss);
-                    if(s.length()>ss.length()){
-                        System.out.println("김");
-                        rank++;
-                    }else if(s.length()==ss.length()){
-                        char a=s.charAt(0);
-                        char b=s.charAt(0);
-                        if((int)a>(int)b){
-                            System.out.println("뒤에 짤");
-                            rank++;
-                        }
-                    }
-                }
-            }
-            if(max<rank){
-                max=rank;
-            }
-            System.out.println("s: "+s+" rank: "+rank);
-            map.put(rank, s);
+            System.out.println(s);
         }
-        System.out.println("-----------------");
-        for(int i=0;i<max;i++){
-            System.out.println(map.get(i));
-        }
-
        
       
      
