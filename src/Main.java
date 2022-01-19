@@ -28,32 +28,42 @@ public class Main {
             }
             arr.add(num);
         }
+        int most=0; 
+        for(Integer i:map.keySet()){
+            int value=map.get(i);
+            if(value>=most){
+                most=value;
+            }
+            System.out.println("key: "+i+"value: "+map.get(i));
+        }
+        System.out.println("most:"+most);
+        List<Integer>keys=new ArrayList<>();
+        for(Integer i:map.keySet()){
+            if(map.get(i)==most){
+                keys.add(i);
+            }
+        }
+        Collections.sort(keys);
+        int mostSee=0;
+        keys.forEach(i->System.out.println(i));
+        if(keys.size()>1){
+            mostSee=keys.get(1);
+        }else{  
+            mostSee=keys.get(0);
+        }
         Collections.sort(arr);
         int sum=0;
         for(int i:arr){
             sum+=i;
         }
-        int most=0;
-        List<Integer>arr2=new ArrayList<>();
-        for(Integer i:map.keySet()){
-            int value=map.get(i);
-            if(value>=most){
-                most=value;
-                arr2.add(i);
-            }
-            System.out.println("key: "+i+"value: "+map.get(i));
-        }
-        Collections.sort(arr2);
         double divi=(double)sum/total;
+       
 
+       
+     
         System.out.println("반올"+Math.round(divi));
         System.out.println("중앙"+arr.get((total/2)));
-        if(arr2.size()>1){
-            System.out.println("최빈"+arr2.get(1));
-
-        }else{
-            System.out.println("최빈"+arr2.get(0));
-        }
+        System.out.println("최빈"+mostSee);
         System.out.println("범위: "+(arr.get(total-1)-arr.get(0)));
         
         
