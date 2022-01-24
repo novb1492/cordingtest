@@ -18,18 +18,17 @@ public class Main {
     
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
-        // StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
-        int total=Integer.parseInt(bf.readLine());
-        int[]arr=new int[total+1];
-        for(int i=0;i<total;i++){
-            int in=Integer.parseInt(bf.readLine());
-            int a=arr[in];
-            a+=1;
-            arr[in]=a;
-            //System.out.println("in: "+arr[in]);
+        StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+        int max=Integer.parseInt(st.nextToken());
+        int num=Integer.parseInt(st.nextToken());
+        int check=0;
+        while(true){
+            int i=1;
+            
+            break;
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
-        int s=arr.length;
+        /*int s=arr.length;
         for(int i=0;i<s;i++){
             int a=arr[i];
              if(a>0){
@@ -39,7 +38,7 @@ public class Main {
                  }
             }
         }
-        bw.close();
+        bw.close();*/
        
       
      
