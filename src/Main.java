@@ -23,9 +23,15 @@ public class Main {
         int num=Integer.parseInt(st.nextToken());
         int check=0;
         while(true){
-            int i=1;
-            
-            break;
+            check+=1;
+            for(int i=1;i<max;i++){
+                for(int ii=0;ii<num;ii++){
+                    System.out.println(i);
+                }
+            }
+            if(check==max){
+                break;
+            }
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
         /*int s=arr.length;
