@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 
 public class Main {
@@ -17,30 +18,41 @@ public class Main {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
         //            StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
         int total=Integer.parseInt(bf.readLine());
-        String[] arr = new String[total];
+        List<String> arr = new ArrayList<>();
         for(int i=0;i<total;i++){
-            arr[i]=bf.readLine();
+            arr.add(bf.readLine());
         }
- 
-        Arrays.sort(arr, new Comparator<String>() {		
-            @Override
-            public int compare(String s1, String s2) {
-               if(s1.length()<s2.length()){
-                   return -1;
-               }else{
-                   char a=s1.charAt(0);
-                   char b=s2.charAt(0);
-                   if((int)a>(int)b){
-                       return -1;
-                   }else{
-                       return 1;
-                   }
-               }
+        //중복제거
+        arr=arr.stream().distinct().collect(Collectors.toList());
+        int size=arr.size();
+        String[] arr2=new String[total];
+        for(int i=0;i<size;i++){
+            int rank=0;
+            String a=arr.get(i);
+            System.out.println("i: "+a);
+            for(int ii=0;ii<size;ii++){
+                String b=arr.get(ii);
+                if(a!=b){
+                    if(a.length()>b.length()){//길면 증가
+                        rank++;
+                    }else if(a.length()==b.length()){//길이가 같다면 사전순으로 정렬
+                        int aa=(int)a.charAt(0);//첫글자만 비교해서 실패하는중 밥먹고 모든글자 비교해서 break걸면된다
+                        int bb=(int)b.charAt(0);
+                        if(aa>bb){
+                            rank++;
+                        }
+                    }
+                }
             }
-        });
+            System.out.println("rank: "+rank);
+            arr2[rank]=a;
+        }
         System.out.println("-------------------");
-        for(String s:arr){
-            System.out.println(s);
+        for(String s:arr2){
+            if(s!=null){
+                System.out.println(s);
+
+            }
         }
        
       
