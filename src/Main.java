@@ -24,11 +24,18 @@ public class Main {
         int check=0;
         while(true){
             check+=1;
-            for(int i=1;i<max;i++){
-                for(int ii=0;ii<num;ii++){
-                    System.out.println(i);
-                }
+            int check2=0;
+            int start=1;
+            System.out.print(check);
+            while(true){
+                check2+=1;
+                if(num==check2){
+                    break;
+                } 
+                start+=1;
+                System.out.print(start);
             }
+            System.out.println("");
             if(check==max){
                 break;
             }
