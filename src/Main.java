@@ -18,28 +18,15 @@ public class Main {
     
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
-        StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+        /*StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
         int max=Integer.parseInt(st.nextToken());
         int num=Integer.parseInt(st.nextToken());
         int check=0;
-        while(true){
-            check+=1;
-            int check2=0;
-            int start=1;
-            System.out.print(check);
-            while(true){
-                check2+=1;
-                if(num==check2){
-                    break;
-                } 
-                start+=1;
-                System.out.print(start);
-            }
-            System.out.println("");
-            if(check==max){
-                break;
-            }
-        }
+        Map<String,Boolean>distinctByKey=new HashMap<>();
+        List<String>arr=new ArrayList<>();*/
+        dfs(10);
+        //arr = arr.stream().distinct().collect(Collectors.toList());
+
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
         /*int s=arr.length;
         for(int i=0;i<s;i++){
@@ -52,11 +39,16 @@ public class Main {
             }
         }
         bw.close();*/
-       
-      
-     
 
    
+    }
+    private static void dfs(int n) {
+        if(n==0){
+            return;
+        }else{
+            dfs(n-1);
+            System.out.println(n);
+        }
     }
    
 }
