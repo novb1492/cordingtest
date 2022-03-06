@@ -105,9 +105,9 @@ public class Main {
     private static void dfs(int n,boolean[] vistied,int deep,String str,int num,int[][] graph,int max) {
        // 방문 처리
         vistied[n] = true;
-        str+=Integer.toString(n);
+        str=str+" "+Integer.toString(n);
         if(deep==num){ 
-           System.out.println(str);  
+           System.out.println(str.trim());  
            return;
         }
         for (int i=1;i<=max;i++) {
