@@ -20,7 +20,10 @@ public class Main {
     // 인덱스가 각각의 노드번호가 될 수 있게 0번인덱스는 아무것도 없는 상태라고 생각하시면됩니다.
     //static int[][] graph = {{}, {2,3,8}, {1,6,8}, {1,5}, {5,7}, {3,4,7}, {2}, {4,5}, {1,2}};
     static int[][] graph = {{}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
-    //1.1,1.2,2.1,
+    //1.1,1.2*,2.1,2.2,2.3*,3.1,3.2,3.3,3.4*,4.1,4.2,4.3,4.4,=1234
+    //4=false,3=false,2=false
+    //3.4*,4.1,4.2,4.3*,3.1,3.2,3.3,3.4=1243
+    //3=false,4=false,2=false
     static int a=1;
     static boolean[] vistied2=new boolean[5];
     public static void main(String[] args) throws Exception {
@@ -33,7 +36,10 @@ public class Main {
         List<String>arr=new ArrayList<>();*/
         boolean[] vistied=new boolean[5];
         int deep=1;
-        dfs(1,vistied,deep);
+        for(int i=1;i<=4;i++){
+            dfs(i,vistied,deep);
+
+        }
 
         //arr = arr.stream().distinct().collect(Collectors.toList());
 
@@ -56,8 +62,9 @@ public class Main {
        // 방문 처리
         vistied[n] = true;
         // 방문 노드 출력
-        System.out.print(n + " , ");
+        System.out.print(n );
         if(deep==4){
+            System.out.println("");
            return;
         }
         // 방문한 노드에 인접한 노드 찾기
