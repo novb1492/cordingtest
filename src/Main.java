@@ -68,7 +68,7 @@ public class Main {
     }
     private static void dfs(int n,boolean[] vistied,int deep,String str,int num,int[][] graph,int max,int beforeN) {
        // 방문 처리
-        vistied[n] = true;
+        //vistied[n] = true;
         if(beforeN!=0){
             if(beforeN>n){
                // System.out.println(beforeN+":"+n);
@@ -81,11 +81,11 @@ public class Main {
            return;
         }
         for (int i=1;i<=max;i++) {
-            if(!vistied[i]) {
+           // if(!vistied[i]) {
                 beforeN=n;
                 dfs(i,vistied,deep+1,str,num,graph,max,beforeN);
-                vistied[i]=false;
-            }
+                //vistied[i]=false;
+           // }
         }
 
     }
