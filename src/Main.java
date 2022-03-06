@@ -31,10 +31,7 @@ public class Main {
     //1.4*,4.1,4.2*,2.1,2.2,2.3*,3.1,3.2,3.3,3.4=1423 
     //3false=2.4 
     //2false=4.3*,3.1,3.2*,3.3,3.4=1432
-    //2flase
-    //3false=4.3*,3.1,3.2*,3.3,3.4=1432
-    //2false=3.3,3.4
-    //3false=3.4 
+    //2flase=4.4
     //---------------------------------
     //2*start
     //2.1*,2.1,2.2,2.3*,3.1,3.2,3.3,3.4*,4.1,4.2,4.3,4.4=2134
@@ -93,7 +90,7 @@ public class Main {
         List<String>arr=new ArrayList<>();*/
         for(int i=1;i<=4;i++){
             int deep=1;
-            String str=Integer.toString(i);
+            String str="";
             boolean[] vistied=new boolean[5];
             dfs(i,vistied,deep,str);
 
@@ -120,17 +117,17 @@ public class Main {
        // 방문 처리
         vistied[n] = true;
         str+=Integer.toString(n);
+        //System.out.println("de:"+deep);
         System.out.println(str);
-        if(deep==4){
-            
+        if(deep==4){   
            return;
         }
         for (int node : graph[n]) {
             // 인접한 노드가 방문한 적이 없다면 DFS 수행
             if(!vistied[node]) {
-                deep++;
-                dfs(node,vistied,deep,str);
+                dfs(node,vistied,deep+1,str);
                 vistied[node]=false;
+               // System.out.println("backde:"+deep);
             }
         }
 
