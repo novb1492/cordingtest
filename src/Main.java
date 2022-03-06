@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
@@ -77,15 +78,15 @@ public class Main {
         StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
         int max=Integer.parseInt(st.nextToken());
         int num=Integer.parseInt(st.nextToken());
-        int[][] graph = {{},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8}};
+        int[][] graph = {{},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7}};
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
         for(int i=1;i<=max;i++){
             int deep=1;
             String str="";
-            boolean[] vistied=new boolean[max+1];
-            dfs(i,vistied,deep,str,num,graph,max);
-
+            dfs(i,deep,str,num,graph,max,bw);
         }
-
+        bw.close();
 
         //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
         /*int s=arr.length;
@@ -102,19 +103,16 @@ public class Main {
 
    
     }
-    private static void dfs(int n,boolean[] vistied,int deep,String str,int num,int[][] graph,int max) {
-       // 방문 처리
-        vistied[n] = true;
+    private static void dfs(int n,int deep,String str,int num,int[][] graph,int max,BufferedWriter bw) throws IOException {
         str=str+" "+Integer.toString(n);
         if(deep==num){ 
-           System.out.println(str.trim());  
+            bw.write(str.trim());
+            bw.append("\n");
+            bw.flush();
            return;
         }
         for (int i=1;i<=max;i++) {
-            if(!vistied[i]) {
-                dfs(i,vistied,deep+1,str,num,graph,max);
-                vistied[i]=false;
-            }
+            dfs(i,deep+1,str,num,graph,max,bw);
         }
 
     }
