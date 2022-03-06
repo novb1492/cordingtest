@@ -127,6 +127,7 @@ public class Main {
         System.out.print(n );
         if(deep==4){
             System.out.println("");
+            
            return;
         }
         // 방문한 노드에 인접한 노드 찾기
@@ -136,6 +137,7 @@ public class Main {
                 deep++;
                 dfs(node,vistied,deep);
                 vistied[node]=false;
+                deep=0;
             }
         }
 
