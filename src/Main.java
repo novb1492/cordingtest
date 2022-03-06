@@ -118,8 +118,8 @@ public class Main {
         vistied[n] = true;
         str+=Integer.toString(n);
         //System.out.println("de:"+deep);
-        System.out.println(str);
-        if(deep==4){   
+        if(deep==4){ 
+            System.out.println(str);  
            return;
         }
         for (int node : graph[n]) {
