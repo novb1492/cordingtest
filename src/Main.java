@@ -107,6 +107,7 @@ public class Main {
         vistied[n] = true;
         str=str+" "+Integer.toString(n);
         if(deep==num){ 
+            
            System.out.println(str.trim());  
            return;
         }
