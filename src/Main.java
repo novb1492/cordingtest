@@ -83,11 +83,6 @@ public class Main {
     //2false=1.3,1.4
     //1false=3.2*,2.1*,1.1,1.2,1.3,1.4=4321
     //4 사이클 작성완료 
-
-    
-
-    static int a=1;
-    static boolean[] vistied2=new boolean[5];
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
         /*StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
@@ -96,10 +91,11 @@ public class Main {
         int check=0;
         Map<String,Boolean>distinctByKey=new HashMap<>();
         List<String>arr=new ArrayList<>();*/
-        boolean[] vistied=new boolean[5];
-        int deep=1;
         for(int i=1;i<=4;i++){
-            dfs(i,vistied,deep);
+            int deep=1;
+            String str=Integer.toString(i);
+            boolean[] vistied=new boolean[5];
+            dfs(i,vistied,deep,str);
 
         }
 
@@ -120,24 +116,21 @@ public class Main {
 
    
     }
-    private static void dfs(int n,boolean[] vistied,int deep) {
+    private static void dfs(int n,boolean[] vistied,int deep,String str) {
        // 방문 처리
         vistied[n] = true;
-        // 방문 노드 출력
-        System.out.print(n );
+        str+=Integer.toString(n);
+        System.out.println(str);
         if(deep==4){
-            System.out.println("");
             
            return;
         }
-        // 방문한 노드에 인접한 노드 찾기
         for (int node : graph[n]) {
             // 인접한 노드가 방문한 적이 없다면 DFS 수행
             if(!vistied[node]) {
                 deep++;
-                dfs(node,vistied,deep);
+                dfs(node,vistied,deep,str);
                 vistied[node]=false;
-                deep=0;
             }
         }
 
