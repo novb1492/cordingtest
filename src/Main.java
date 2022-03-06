@@ -78,7 +78,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
         int max=Integer.parseInt(st.nextToken());
         int num=Integer.parseInt(st.nextToken());
-        int[][] graph = {{},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7}};
+        int[][] graph = {{},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7},{1,2,3,4,5,6,7}};
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         for(int i=1;i<=max;i++){
@@ -87,27 +87,11 @@ public class Main {
             dfs(i,deep,str,num,graph,max,bw);
         }
         bw.close();
-
-        //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
-        /*int s=arr.length;
-        for(int i=0;i<s;i++){
-            int a=arr[i];
-             if(a>0){
-                 for(int ii=0;ii<a;ii++){
-                    bw.write(i+"\n");   //버퍼에 있는 값 전부 출력
-                    bw.flush();   //남아있는 데이터를 모두 출력시킴 
-                 }
-            }
-        }
-        bw.close();*/
-
-   
     }
     private static void dfs(int n,int deep,String str,int num,int[][] graph,int max,BufferedWriter bw) throws IOException {
         str=str+" "+Integer.toString(n);
         if(deep==num){ 
-            bw.write(str.trim());
-            bw.append("\n");
+            bw.write(str.trim()+"\n");
             bw.flush();
            return;
         }
