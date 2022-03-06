@@ -2,24 +2,16 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
+
 
 
 public class Main {
     
     // 그림예시 그래프의 연결상태를 2차원 배열로 표현
     // 인덱스가 각각의 노드번호가 될 수 있게 0번인덱스는 아무것도 없는 상태라고 생각하시면됩니다.
-    //static int[][] graph = {{}, {2,3,8}, {1,6,8}, {1,5}, {5,7}, {3,4,7}, {2}, {4,5}, {1,2}};
-    static int[][] graph = {{}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
+    //static int[][] graph = {{}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
     //1* start
     //1.1,1.2*,2.1,2.2,2.3*,3.1,3.2,3.3,3.4*,4.1,4.2,4.3,4.4,=1234
     //4false
@@ -82,23 +74,20 @@ public class Main {
     //4 사이클 작성완료 
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
-        /*StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+        StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
         int max=Integer.parseInt(st.nextToken());
         int num=Integer.parseInt(st.nextToken());
-        int check=0;
-        Map<String,Boolean>distinctByKey=new HashMap<>();
-        List<String>arr=new ArrayList<>();*/
-        for(int i=1;i<=4;i++){
+        int[][] graph = {{},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8}};
+        for(int i=1;i<=max;i++){
             int deep=1;
             String str="";
-            boolean[] vistied=new boolean[5];
-            dfs(i,vistied,deep,str);
+            boolean[] vistied=new boolean[max+1];
+            dfs(i,vistied,deep,str,num,graph,max);
 
         }
 
-        //arr = arr.stream().distinct().collect(Collectors.toList());
 
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+        //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
         /*int s=arr.length;
         for(int i=0;i<s;i++){
             int a=arr[i];
@@ -113,21 +102,18 @@ public class Main {
 
    
     }
-    private static void dfs(int n,boolean[] vistied,int deep,String str) {
+    private static void dfs(int n,boolean[] vistied,int deep,String str,int num,int[][] graph,int max) {
        // 방문 처리
         vistied[n] = true;
         str+=Integer.toString(n);
-        //System.out.println("de:"+deep);
-        if(deep==4){ 
-            System.out.println(str);  
+        if(deep==num){ 
+           System.out.println(str);  
            return;
         }
-        for (int node : graph[n]) {
-            // 인접한 노드가 방문한 적이 없다면 DFS 수행
-            if(!vistied[node]) {
-                dfs(node,vistied,deep+1,str);
-                vistied[node]=false;
-               // System.out.println("backde:"+deep);
+        for (int i=1;i<=max;i++) {
+            if(!vistied[i]) {
+                dfs(i,vistied,deep+1,str,num,graph,max);
+                vistied[i]=false;
             }
         }
 
