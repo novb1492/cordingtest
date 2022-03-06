@@ -82,7 +82,8 @@ public class Main {
             int deep=1;
             String str="";
             boolean[] vistied=new boolean[max+1];
-            dfs(i,vistied,deep,str,num,graph,max);
+            int beforeN=0;
+            dfs(i,vistied,deep,str,num,graph,max,beforeN);
 
         }
 
@@ -102,18 +103,23 @@ public class Main {
 
    
     }
-    private static void dfs(int n,boolean[] vistied,int deep,String str,int num,int[][] graph,int max) {
+    private static void dfs(int n,boolean[] vistied,int deep,String str,int num,int[][] graph,int max,int beforeN) {
        // 방문 처리
         vistied[n] = true;
+        if(beforeN!=0){
+            if(beforeN>n){
+                return;
+            }
+        }
         str=str+" "+Integer.toString(n);
         if(deep==num){ 
-            
            System.out.println(str.trim());  
            return;
         }
         for (int i=1;i<=max;i++) {
             if(!vistied[i]) {
-                dfs(i,vistied,deep+1,str,num,graph,max);
+                beforeN=n;
+                dfs(i,vistied,deep+1,str,num,graph,max,beforeN);
                 vistied[i]=false;
             }
         }
