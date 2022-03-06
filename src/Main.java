@@ -30,7 +30,6 @@ public class Main {
         Map<String,Boolean>distinctByKey=new HashMap<>();
         List<String>arr=new ArrayList<>();*/
         dfs(1);
-        int[][][] a=new int[10][10][10];
 
         //arr = arr.stream().distinct().collect(Collectors.toList());
 
