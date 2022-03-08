@@ -28,27 +28,27 @@ public class Main {
             startAndEnd[1]=Integer.parseInt(st.nextToken());
             times.add(startAndEnd);
         }
-        List<int[]>sortArr=new ArrayList<>();
+        int topCount=0;
         for(int i=0;i<times.size();i++){
             int endTime=times.get(i)[1];
-            System.out.println(endTime);
+            //System.out.println(endTime);
+            int count=1;
             for(int ii=0;ii<times.size();ii++){
                 if(i!=ii){
-                    if(endTime>=times.get(ii)[0]){
-                       // System.out.println("start:"+times.get(i)[0] );
-                        int[] startAndEnd=new int[2];
-                        startAndEnd=times.get(ii);
-                        sortArr.add(startAndEnd);
-                        endTime=times.get(ii)[0];
+                    if(endTime<=times.get(ii)[0]){
+                        endTime=times.get(ii)[1];
+                        count++;
                     }
                 }
             }
-        }
-        for(int[]a:sortArr){
-            System.out.println(Arrays.toString(a));
+            if(topCount<count){
+                topCount=count;
+            }
         }
 
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+        System.out.println(topCount);
+ 
+       // BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
   
    
     }
