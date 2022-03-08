@@ -20,36 +20,35 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); 
         int totalCount=Integer.parseInt(bf.readLine());
-        List<int[]>times=new ArrayList<>();
+        int[][]times=new int[totalCount][2];
         for(int i=0;i<totalCount;i++){
             StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
             int[] startAndEnd=new int[2];
             startAndEnd[0]=Integer.parseInt(st.nextToken());
             startAndEnd[1]=Integer.parseInt(st.nextToken());
-            times.add(startAndEnd);
+            times[i]=startAndEnd;
         }
-        int topCount=0;
-        for(int i=0;i<times.size();i++){
-            int endTime=times.get(i)[1];
-            //System.out.println(endTime);
-            int count=1;
-            for(int ii=0;ii<times.size();ii++){
-                if(i!=ii){
-                    if(endTime<=times.get(ii)[0]){
-                        endTime=times.get(ii)[1];
-                        count++;
-                    }
-                }
-            }
-            if(topCount<count){
-                topCount=count;
+        Arrays.sort(times,new Comparator<int[]>(){ 
+            @Override 
+            public int compare(int[] o1, int[] o2){ 
+                if(o1[1] < o2[1]){ 
+                    return -1; 
+                }else{ 
+                    return 1; 
+                } 
+            } 
+        });
+        int top=0;
+        totalCount=0;
+        for(int[]time:times){
+            if(top<=time[0]){
+                totalCount++;
+                top=time[1];
             }
         }
-
-        System.out.println(topCount);
+        System.out.println(totalCount);
  
-       // BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
-  
+      
    
     }
 
