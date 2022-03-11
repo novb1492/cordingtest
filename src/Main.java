@@ -40,8 +40,9 @@ public class Main {
         report2[1]="ryan con";
         report2[2]="ryan con";
         report2[3]="ryan con";
-        int k2=3;
-        System.out.println(Arrays.toString(solution(id_list, report, k)));
+        int k2=1;
+        
+        System.out.println(Arrays.toString(solution(id_list, report, k2)));
            
         
     }
@@ -53,7 +54,6 @@ public class Main {
         }
         LinkedHashMap<String,Object>map=new LinkedHashMap<>();
         for(String reports:report){
-            //System.out.println(reports);
             String[] reportUsers=reports.split(" ");
             String reportUser=reportUsers[0];
             String targetUser=reportUsers[1];
@@ -64,7 +64,6 @@ public class Main {
                 String[] reportUserArr=reportUserss.split(",");
                 boolean flag=true;
                 for(String s:reportUserArr){
-                    //System.out.println("s:"+s+" targetUser: "+targetUser);
                     if(reportUser.equals(s)){
                         flag=false;
                         break;
@@ -76,17 +75,12 @@ public class Main {
                 }
             }
         }
-        //System.out.println(map.toString());
         for(Entry<String, Object> s:map.entrySet()){
-            if(s.getValue().toString().split(",").length>=k){
-                for(int i=0;i<id_list.length;i++){
-                    if(id_list[i].equals(s.getValue().toString().split(",")[1])){
-                        String[] ss=s.getValue().toString().split(",");
-                        int num=idAndNum.get(ss[0]);
-                        idAndNum.replace(ss[0], num+1);
-                        num=idAndNum.get(ss[1]);
-                        idAndNum.replace(ss[1], num+1);
-                    }
+            String[] users=s.getValue().toString().split(",");
+            if(users.length>=k){
+                for(String user:users){
+                    int num=idAndNum.get(user);
+                    idAndNum.replace(user, num+1);
                 }
             }
         }
