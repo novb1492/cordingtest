@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,12 +21,12 @@ public class Main {
     
   
     public static void main(String[] args) throws Exception {
-        int[] fees=new int[4];
-        fees[0]=180;//기본시간
+        int[] fees={120, 0, 60, 591};
+        /*fees[0]=180;//기본시간
         fees[1]=5000;//기본요금  
         fees[2]=10;//n분당
-        fees[3]=600;//요금
-        String[] records={"05:34 5961 IN", "06:00 0000 IN", "06:34 0000 OUT", "07:59 5961 OUT", "07:59 0148 IN", "18:59 0000 IN", "19:09 0148 OUT", "22:59 5961 IN", "23:00 5961 OUT"};
+        fees[3]=600;//요금*/
+        String[] records={"16:00 3961 IN","16:00 0202 IN","18:00 3961 OUT","18:00 0202 OUT","23:58 3961 IN"};
 
         
         System.out.println(Arrays.toString(solution(fees, records)));
@@ -44,26 +45,97 @@ public class Main {
                 cars.put(carNum, record);
             }
         }
-        Map<String,Integer>prices=new HashMap<>();
+        //System.out.println(cars.toString());
+        Map<String,Integer>totalMinByCars=new HashMap<>();
         for(Entry<String, Object> car:cars.entrySet()){
             String[] infors=car.getValue().toString().split(",");
-            int price=0;
+            String carNum=car.getKey();
+            System.out.println(Arrays.toString(infors));
             if(infors.length%2!=0){
-                System.out.println(Arrays.toString(infors));
-            }else{
+                //System.out.println(Arrays.toString(infors));
+                int in=0;
+                int out=0;
+                Boolean flag=false;
                 for(int i=0;i<infors.length;i++){
-                    String in="";
-                    String out="";
-                    if(infors[i].split(" ")[2].equals("IN")){
-                        in=infors[i].split(" ")[0];
+                    if(i==infors.length-1){
+                        if(infors[i].split(" ")[2].equals("IN")){
+                            String[] times=infors[i].split(" ")[0].split(":");
+                            in=Integer.parseInt(times[0])*60+Integer.parseInt(times[1]);
+                            flag=true;
+                        }
+                        if(flag){
+                            out=23*60+59;
+                            int minusMin=out-in;
+                            if(totalMinByCars.containsKey(carNum)){
+                                int originMinusMin=totalMinByCars.get(carNum);
+                                originMinusMin=originMinusMin+minusMin;
+                                totalMinByCars.replace(carNum, originMinusMin);
+                            }else{
+                                totalMinByCars.put(carNum, minusMin);
+                            }
+                            flag=false;
+                        }
                     }else{
-                        out=infors[i].split(" ")[0];
+                        if(infors[i].split(" ")[2].equals("IN")){
+                            String[] times=infors[i].split(" ")[0].split(":");
+                            in=Integer.parseInt(times[0])*60+Integer.parseInt(times[1]);
+                        }else{
+                            String[] times=infors[i].split(" ")[0].split(":");
+                            out=Integer.parseInt(times[0])*60+Integer.parseInt(times[1]);
+                            int minusMin=out-in;
+                            if(totalMinByCars.containsKey(carNum)){
+                                int originMinusMin=totalMinByCars.get(carNum);
+                                originMinusMin=originMinusMin+minusMin;
+                                totalMinByCars.replace(carNum, originMinusMin);
+                            }else{
+                                totalMinByCars.put(carNum, minusMin);
+                            }
+                        }
                     }
-                    System.out.println(in+"/"+out);
+                }
+            }else{
+                int in=0;
+                int out=0;
+                for(int i=0;i<infors.length;i++){
+                    if(infors[i].split(" ")[2].equals("IN")){
+                        String[] times=infors[i].split(" ")[0].split(":");
+                        in=Integer.parseInt(times[0])*60+Integer.parseInt(times[1]);
+                    }else{
+                        String[] times=infors[i].split(" ")[0].split(":");
+                        out=Integer.parseInt(times[0])*60+Integer.parseInt(times[1]);
+                        int minusMin=out-in;
+                        if(totalMinByCars.containsKey(carNum)){
+                            int originMinusMin=totalMinByCars.get(carNum);
+                            originMinusMin=originMinusMin+minusMin;
+                            totalMinByCars.replace(carNum, originMinusMin);
+                        }else{
+                            totalMinByCars.put(carNum, minusMin);
+                        }
+                    }
                 }
             }
         }
-        int[] answer = {};
+        //System.out.println(totalMinByCars.toString());
+        for(Entry<String, Integer> totalMinByCar:totalMinByCars.entrySet()){
+            System.out.println(totalMinByCar.toString());
+            int totalMin=totalMinByCar.getValue()-fees[0];
+            System.out.println(totalMin);
+            if(totalMin<=0){
+                totalMinByCars.replace(totalMinByCar.getKey(), fees[1]);
+            }else{
+                int mok=totalMin/fees[2];
+                int nam=totalMin%fees[2];
+                int price=0;
+                if(nam>0){
+                    price=mok*fees[3]+fees[1]+fees[3];
+                }else{
+                    price=mok*fees[3]+fees[1];
+                }
+                totalMinByCars.replace(totalMinByCar.getKey(), price);
+            }
+        }
+        System.out.println(totalMinByCars.toString());
+        int[] answer = new int[totalMinByCars.size()];
         return answer;
     }
 
