@@ -136,6 +136,13 @@ public class Main {
         }
         System.out.println(totalMinByCars.toString());
         int[] answer = new int[totalMinByCars.size()];
+        int i=0;
+        Object[] mapkey = totalMinByCars.keySet().toArray();
+		Arrays.sort(mapkey);
+        for(Object key:mapkey){
+            answer[i]=totalMinByCars.get(key);
+            i+=1;
+        }
         return answer;
     }
 
