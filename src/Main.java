@@ -33,17 +33,36 @@ public class Main {
         
     }
     public static int[] solution(int[] fees, String[] records) {
-        Map<String,String>cars=new HashMap<>();
+        Map<String,Object>cars=new HashMap<>();
         for(String record:records){
             String carNum=record.split(" ")[1];
             if(cars.containsKey(carNum)){
-                String infors=cars.get(carNum);
+                String infors=cars.get(carNum).toString();
                 infors=infors+","+record;
+                cars.replace(carNum, infors);
             }else{
                 cars.put(carNum, record);
             }
         }
-        System.out.println(cars.toString());
+        Map<String,Integer>prices=new HashMap<>();
+        for(Entry<String, Object> car:cars.entrySet()){
+            String[] infors=car.getValue().toString().split(",");
+            int price=0;
+            if(infors.length%2!=0){
+                System.out.println(Arrays.toString(infors));
+            }else{
+                for(int i=0;i<infors.length;i++){
+                    String in="";
+                    String out="";
+                    if(infors[i].split(" ")[2].equals("IN")){
+                        in=infors[i].split(" ")[0];
+                    }else{
+                        out=infors[i].split(" ")[0];
+                    }
+                    System.out.println(in+"/"+out);
+                }
+            }
+        }
         int[] answer = {};
         return answer;
     }
